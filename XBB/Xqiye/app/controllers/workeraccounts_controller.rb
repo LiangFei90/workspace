@@ -48,6 +48,10 @@ class WorkeraccountsController < ApplicationController
     end
   end
 
+  def change_current_city
+    session[:current_city]=City.find(params[:id])
+    redirect_to :back
+  end
 
   private
   	  def set_workeraccount

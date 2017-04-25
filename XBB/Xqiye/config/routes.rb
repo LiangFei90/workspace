@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
   
+  resources :cities
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :workeraccounts
 
@@ -23,6 +24,12 @@ Rails.application.routes.draw do
   resources :factories
 
   resources :worker_messages
+
+  resources :regions do 
+    collection do 
+      get :search
+    end
+  end
 
   root 'workeraccounts#index'
 

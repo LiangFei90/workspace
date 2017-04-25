@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424082324) do
+ActiveRecord::Schema.define(version: 20170425075413) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "address"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 20170424082324) do
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
     t.index ["addressowner_type", "addressowner_id"], name: "index_addresses_on_addressowner_type_and_addressowner_id", using: :btree
+  end
+
+  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "region_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["region_id"], name: "index_cities_on_region_id", using: :btree
   end
 
   create_table "couriers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -135,6 +143,13 @@ ActiveRecord::Schema.define(version: 20170424082324) do
     t.datetime "updated_at",                          null: false
     t.index ["id"], name: "index_workeraccounts_on_id", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_workeraccounts_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "workers_cites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "city_id"
+    t.integer "worker_id"
+    t.index ["city_id"], name: "index_workers_cites_on_city_id", using: :btree
+    t.index ["worker_id"], name: "index_workers_cites_on_worker_id", using: :btree
   end
 
 end

@@ -1,0 +1,16 @@
+.panel.panel-default
+	.panel-heading
+		| 城市信息
+	.panel-body
+		table.table.table-striped
+			tr
+				td width="15%"  
+					b 城市名称
+				td width="35%" =@city.name
+				td width="15%" 
+					b 区
+				td width="35%" =@city.region
+ 	.panel-footer
+		= link_to 'Edit', edit_city_path(@city)
+		'  |
+		= link_to 'Back', cities_path
