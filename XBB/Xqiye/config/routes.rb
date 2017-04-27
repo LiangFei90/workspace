@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   resources :worker_messages
 
+  resources :roles
+
   resources :regions do 
     collection do 
       get :search
