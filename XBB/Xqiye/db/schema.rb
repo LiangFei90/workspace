@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170427115538) do
+=======
+ActiveRecord::Schema.define(version: 20170425094015) do
+>>>>>>> 22631d1e67a979ee1742cbd048fcf58fa97e71b6
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "address"
@@ -32,7 +36,39 @@ ActiveRecord::Schema.define(version: 20170427115538) do
     t.index ["region_id"], name: "index_cities_on_region_id", using: :btree
   end
 
+<<<<<<< HEAD
   create_table "couriers_stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+=======
+  create_table "cities_workeraccounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "city_id"
+    t.integer "workeraccount_id"
+    t.index ["city_id"], name: "index_cities_workeraccounts_on_city_id", using: :btree
+    t.index ["workeraccount_id"], name: "index_cities_workeraccounts_on_workeraccount_id", using: :btree
+  end
+
+  create_table "couriers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "mobile",                 default: ""
+    t.string   "email",                  default: ""
+    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,     null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "locked_at"
+    t.string   "name"
+    t.boolean  "status",                 default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.index ["mobile"], name: "index_couriers_on_mobile", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_couriers_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "couriers_stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+>>>>>>> 22631d1e67a979ee1742cbd048fcf58fa97e71b6
     t.integer "courier_id"
     t.integer "station_id"
     t.index ["courier_id"], name: "index_couriers_stations_on_courier_id", using: :btree

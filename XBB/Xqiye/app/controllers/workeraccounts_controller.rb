@@ -58,7 +58,11 @@ class WorkeraccountsController < ApplicationController
       	@workeraccount = Workeraccount.find(params[:id])
       end
   	  def workeraccount_params
+<<<<<<< HEAD
   		  params.require(:workeraccount).permit(:email, :password, :password_confirmation, role_ids: [], city_ids: [])
+=======
+  		  params.require(:workeraccount).permit(:email, :password, :password_confirmation, city_ids: [])
+>>>>>>> 22631d1e67a979ee1742cbd048fcf58fa97e71b6
   	  end
 
 end
