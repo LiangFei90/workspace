@@ -1,9 +1,12 @@
 <h1>Edit</h1>
-<%= simple_form_for(@wrokeraccount) do  |f|%>
+<%= simple_form_for(@workeraccount) do  |f|%>
 	<%= f.error_notification%>
 	<div class="form-inputs">
 	    <%= f.association :cities, as: :check_boxes%>   
 	</div>
+	 <div class="form-inputs">
+	    <%= f.association :roles, as: :check_boxes%>   
+	</div> 
 	<div class="form-acions">
 	<%= f.button :submit%>
 	</div>

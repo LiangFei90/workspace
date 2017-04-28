@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170428125256) do
+=======
+ActiveRecord::Schema.define(version: 20170427115538) do
+>>>>>>> c22c624bca31895b7467c20d52a46d8eebc71a7c
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "address"
@@ -40,6 +44,7 @@ ActiveRecord::Schema.define(version: 20170428125256) do
     t.index ["region_id"], name: "index_cities_on_region_id", using: :btree
   end
 
+<<<<<<< HEAD
   create_table "clothings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=gbk" do |t|
     t.integer  "gid"
     t.string   "name"
@@ -49,6 +54,13 @@ ActiveRecord::Schema.define(version: 20170428125256) do
     t.string   "belongs",                 collation: "latin1_swedish_ci"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+=======
+  create_table "cities_workeraccounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "city_id"
+    t.integer "workeraccount_id"
+    t.index ["city_id"], name: "index_cities_workeraccounts_on_city_id", using: :btree
+    t.index ["workeraccount_id"], name: "index_cities_workeraccounts_on_workeraccount_id", using: :btree
+>>>>>>> c22c624bca31895b7467c20d52a46d8eebc71a7c
   end
 
   create_table "couriers_stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -130,6 +142,21 @@ ActiveRecord::Schema.define(version: 20170428125256) do
     t.index ["parent_id"], name: "index_regions_on_parent_id", using: :btree
   end
 
+<<<<<<< HEAD
+=======
+  create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "display_name"
+    t.string   "comment"
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+    t.index ["name"], name: "index_roles_on_name", using: :btree
+  end
+
+>>>>>>> c22c624bca31895b7467c20d52a46d8eebc71a7c
   create_table "stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.string   "address"
@@ -177,6 +204,15 @@ ActiveRecord::Schema.define(version: 20170428125256) do
     t.index ["reset_password_token"], name: "index_workeraccounts_on_reset_password_token", unique: true, using: :btree
   end
 
+<<<<<<< HEAD
+=======
+  create_table "workeraccounts_roles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "workeraccount_id"
+    t.integer "role_id"
+    t.index ["workeraccount_id", "role_id"], name: "index_workeraccounts_roles_on_workeraccount_id_and_role_id", using: :btree
+  end
+
+>>>>>>> c22c624bca31895b7467c20d52a46d8eebc71a7c
   create_table "workers_cites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "city_id"
     t.integer "worker_id"
