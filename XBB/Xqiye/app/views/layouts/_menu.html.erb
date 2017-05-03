@@ -5,7 +5,9 @@
 	    	<a class="navbar-brand" href="" style="text-decoration:none" >后台</a>
 	    	<%if current_workeraccount%>
 		    	<div class="navbar-collapse collapse navbar-responsive-collapse"  >	
+
 		    		<ul class="nav navbar-nav">
+		    		<%if can?(:manage,Workeraccount)%>
 		    			<li class="dropdown">
 		    				<%= link_to "系统管理<b class='caret'></b>".html_safe, '#', :class => 'dropdown-toggle', data: {toggle: 'dropdown'} %>
 		    				<ul class="dropdown-menu">
@@ -13,13 +15,15 @@
 		    						<%= link_to "人员",workeraccounts_path %>
 		    					</li>
 		    					<li >
-		    						<%= link_to "角色",workeraccounts_path %>
+		    						<%= link_to "角色",roles_path %>
 		    					</li>
 		    					<li >
 		    						<%= link_to "员工信息",worker_messages_path %>
 		    					</li>
 		    				</ul>
 		    			</li>
+		    	    <%end%>
+		    	    <%if current_workeraccount.has_role?(:yunying)%>
 		    			<li class="dropdown">
 		    				<%= link_to "总部管理<b class='caret'></b>".html_safe, '#', :class => 'dropdown-toggle', data: {toggle: 'dropdown'} %>
 		    				<ul class="dropdown-menu">
@@ -35,6 +39,8 @@
 
 		    				</ul>
 		    			</li>
+		    		<%end%>
+		    		<%if current_workeraccount.has_role?(:fenchengshi)%>
 		    			<li class="dropdown">
 		    				<%= link_to "分城市管理<b class='caret'></b>".html_safe, '#', :class => 'dropdown-toggle', data: {toggle: 'dropdown'} %>
 		    				<ul class="dropdown-menu">
@@ -49,8 +55,9 @@
 		    					</li>
 		    				</ul>
 		    			</li>
-		    			
+		    		<%end%>	
 		    		</ul>
+		    	
 		    		<ul class="nav navbar-nav ieCss pull-right" role="presentation" >
 						<span style="font-size:14px; color:#777" >
 						<%= current_workeraccount.email %>
