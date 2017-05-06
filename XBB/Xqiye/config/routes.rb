@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :workeraccounts do 
     member do 
       get 'reset'=>'workeraccounts#reset' ,:as =>'reset_password'
-      #put :change_current_city
+      put :change_current_city
     end
   end
 

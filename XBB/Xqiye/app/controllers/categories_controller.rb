@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_filter :authenticate_workeraccount!
   
   
   before_action :set_category, only: [:show, :edit, :update, :destroy, :prices, :init_prices]
@@ -6,13 +7,16 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
+    #@categories =current_city.categories
     @categories = Category.paginate(page: params[:page], per_page: 10).order(updated_at: :desc)
+   
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @products = @category.products
+    #@price_rule = @categories.get_price_rule(current_city)
+    @products = @category.products.paginate(page: params[:page], per_page: 10).order(updated_at: :desc)
   end
   # GET /categories/new
   def new

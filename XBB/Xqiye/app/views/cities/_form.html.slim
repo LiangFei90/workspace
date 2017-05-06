@@ -4,6 +4,7 @@
   .form-inputs
   	= f.input :name
   	= f.association :region, collection:[]
+    = f.association :categories, as: :check_boxes
 
   .form-actions
     = f.button :submit

@@ -1,5 +1,6 @@
 class PriceRulesController < ApplicationController
   before_action :set_price_rule, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_workeraccount!
 
   # GET /price_rules
   # GET /price_rules.json

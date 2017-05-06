@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :set_category
+  before_filter :authenticate_workeraccount!
 
   # GET /products
   # GET /products.json
