@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-<<<<<<< HEAD
-=======
-
   
   resources :price_rules
   resources :prices
@@ -15,7 +12,6 @@ Rails.application.routes.draw do
     end
   end
 
->>>>>>> 66c11b31a6eb26d267c2ca3ed6a10e0a6b24c811
   resources :cities
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :workeraccounts
