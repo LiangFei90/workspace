@@ -1,6 +1,26 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+<<<<<<< HEAD
   before_filter :authenticate_workeraccount!
+=======
+ def current_ability
+    @current_ability ||= ::Ability.new(current_workeraccount)
+  end
+
+  def after_sign_in_path_for(resource)
+    if current_workeraccount.has_role?(:admin)
+      workeraccounts_path
+    elsif current_workeraccount.has_role?(:yunying)
+      cities_path
+    elsif current_workeraccount.has_role?(:fenchengshi)
+      price_rules_path
+    end
+  end
+
+  def after_sign_out_path_for(resource)
+    new_workeraccount_session_path
+  end
+>>>>>>> a5663897c55a8ecee9dca7a122a38b6a2d60e97d
 
   def current_city
     unless session[:current_city_id]
@@ -13,5 +33,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a5663897c55a8ecee9dca7a122a38b6a2d60e97d
 end

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170505094452) do
+=======
+ActiveRecord::Schema.define(version: 20170428125256) do
+>>>>>>> a5663897c55a8ecee9dca7a122a38b6a2d60e97d
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "address"
@@ -32,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170505094452) do
     t.datetime "updated_at",                 null: false
   end
 
+<<<<<<< HEAD
   create_table "categories_cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "city_id"
     t.integer "category_id"
@@ -40,6 +45,9 @@ ActiveRecord::Schema.define(version: 20170505094452) do
   end
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+=======
+  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+>>>>>>> a5663897c55a8ecee9dca7a122a38b6a2d60e97d
     t.string   "name"
     t.integer  "region_id"
     t.datetime "created_at", null: false
@@ -52,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170505094452) do
     t.integer "workeraccount_id"
     t.index ["city_id"], name: "index_cities_workeraccounts_on_city_id", using: :btree
     t.index ["workeraccount_id"], name: "index_cities_workeraccounts_on_workeraccount_id", using: :btree
+<<<<<<< HEAD
   end
 
   create_table "clothings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=gbk" do |t|
@@ -63,6 +72,8 @@ ActiveRecord::Schema.define(version: 20170505094452) do
     t.string   "belongs",                 collation: "latin1_swedish_ci"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+=======
+>>>>>>> a5663897c55a8ecee9dca7a122a38b6a2d60e97d
   end
 
   create_table "couriers_stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -135,7 +146,7 @@ ActiveRecord::Schema.define(version: 20170505094452) do
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
   end
 
-  create_table "regions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "regions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "parent_id"
     t.integer  "level"
@@ -144,7 +155,11 @@ ActiveRecord::Schema.define(version: 20170505094452) do
     t.index ["parent_id"], name: "index_regions_on_parent_id", using: :btree
   end
 
+<<<<<<< HEAD
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+=======
+  create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+>>>>>>> a5663897c55a8ecee9dca7a122a38b6a2d60e97d
     t.string   "name"
     t.string   "resource_type"
     t.integer  "resource_id"
@@ -168,7 +183,7 @@ ActiveRecord::Schema.define(version: 20170505094452) do
     t.index ["region_id"], name: "index_stations_on_region_id", using: :btree
   end
 
-  create_table "worker_messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "worker_messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "worker_id"
     t.string   "worker_name"
     t.string   "sex"
