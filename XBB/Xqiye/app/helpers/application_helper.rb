@@ -16,7 +16,14 @@ module ApplicationHelper
   def is_active?(expected_value, actual_value)
     expected_value == actual_value ? 'active' : ''
   end
+<<<<<<< HEAD
 
+=======
+  def qiniu_url(url)
+    "http://olavg5ba4.bkt.clouddn.com/#{url}"
+  end
+  
+>>>>>>> 66c11b31a6eb26d267c2ca3ed6a10e0a6b24c811
   def current_city
     unless session[:current_city_id]
       session[:current_city_id] = current_workeraccount.cities.first.id if current_workeraccount.cities.first
@@ -27,4 +34,9 @@ module ApplicationHelper
       @current_city = nil
     end
   end
+<<<<<<< HEAD
+=======
+
+  
+>>>>>>> 66c11b31a6eb26d267c2ca3ed6a10e0a6b24c811
 end

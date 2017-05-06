@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170427115538) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20170505094452) do
+=======
+ActiveRecord::Schema.define(version: 20170428125256) do
+>>>>>>> a5663897c55a8ecee9dca7a122a38b6a2d60e97d
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "address"
@@ -24,7 +28,26 @@ ActiveRecord::Schema.define(version: 20170427115538) do
     t.index ["addressowner_type", "addressowner_id"], name: "index_addresses_on_addressowner_type_and_addressowner_id", using: :btree
   end
 
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "name"
+    t.string   "logo"
+    t.boolean  "is_del",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+<<<<<<< HEAD
+  create_table "categories_cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "city_id"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_categories_cities_on_category_id", using: :btree
+    t.index ["city_id"], name: "index_categories_cities_on_city_id", using: :btree
+  end
+
+  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+=======
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+>>>>>>> a5663897c55a8ecee9dca7a122a38b6a2d60e97d
     t.string   "name"
     t.integer  "region_id"
     t.datetime "created_at", null: false
@@ -37,6 +60,20 @@ ActiveRecord::Schema.define(version: 20170427115538) do
     t.integer "workeraccount_id"
     t.index ["city_id"], name: "index_cities_workeraccounts_on_city_id", using: :btree
     t.index ["workeraccount_id"], name: "index_cities_workeraccounts_on_workeraccount_id", using: :btree
+<<<<<<< HEAD
+  end
+
+  create_table "clothings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=gbk" do |t|
+    t.integer  "gid"
+    t.string   "name"
+    t.integer  "price"
+    t.string   "period",                  collation: "latin1_swedish_ci"
+    t.string   "category"
+    t.string   "belongs",                 collation: "latin1_swedish_ci"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+=======
+>>>>>>> a5663897c55a8ecee9dca7a122a38b6a2d60e97d
   end
 
   create_table "couriers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -96,6 +133,40 @@ ActiveRecord::Schema.define(version: 20170427115538) do
     t.index ["station_id"], name: "index_factories_stations_on_station_id", using: :btree
   end
 
+  create_table "price_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "grade"
+    t.integer  "city_id"
+    t.integer  "category_id"
+    t.date     "from_date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_price_rules_on_category_id", using: :btree
+    t.index ["city_id"], name: "index_price_rules_on_city_id", using: :btree
+  end
+
+  create_table "prices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.float    "price1",     limit: 24, default: 0.0
+    t.float    "price2",     limit: 24, default: 0.0
+    t.float    "price3",     limit: 24, default: 0.0
+    t.float    "price4",     limit: 24, default: 0.0
+    t.float    "price5",     limit: 24, default: 0.0
+    t.float    "price6",     limit: 24, default: 0.0
+    t.integer  "product_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["product_id"], name: "index_prices_on_product_id", using: :btree
+  end
+
+  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "name"
+    t.string   "logo"
+    t.boolean  "is_del",      default: false
+    t.integer  "category_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["category_id"], name: "index_products_on_category_id", using: :btree
+  end
+
   create_table "regions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "parent_id"
@@ -105,7 +176,11 @@ ActiveRecord::Schema.define(version: 20170427115538) do
     t.index ["parent_id"], name: "index_regions_on_parent_id", using: :btree
   end
 
+<<<<<<< HEAD
+  create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+=======
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+>>>>>>> a5663897c55a8ecee9dca7a122a38b6a2d60e97d
     t.string   "name"
     t.string   "resource_type"
     t.integer  "resource_id"
@@ -170,4 +245,20 @@ ActiveRecord::Schema.define(version: 20170427115538) do
     t.index ["workeraccount_id", "role_id"], name: "index_workeraccounts_roles_on_workeraccount_id_and_role_id", using: :btree
   end
 
+<<<<<<< HEAD
+=======
+  create_table "workers_cites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "city_id"
+    t.integer "worker_id"
+    t.index ["city_id"], name: "index_workers_cites_on_city_id", using: :btree
+    t.index ["worker_id"], name: "index_workers_cites_on_worker_id", using: :btree
+  end
+
+  add_foreign_key "categories_cities", "categories"
+  add_foreign_key "categories_cities", "cities"
+  add_foreign_key "price_rules", "categories"
+  add_foreign_key "price_rules", "cities"
+  add_foreign_key "prices", "products"
+  add_foreign_key "products", "categories"
+>>>>>>> 66c11b31a6eb26d267c2ca3ed6a10e0a6b24c811
 end

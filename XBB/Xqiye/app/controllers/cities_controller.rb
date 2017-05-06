@@ -1,6 +1,7 @@
 class CitiesController < ApplicationController
   before_filter :authenticate_workeraccount!
   before_action :set_city, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_workeraccount!
 
   # GET /cities
   # GET /cities.json

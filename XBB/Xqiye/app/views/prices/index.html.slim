@@ -1,0 +1,21 @@
+h1 品类价目
+
+table border='1'
+  thead
+    tr 
+            th width='80%'  heigth='20px' Name
+            th width='20%'  
+            th width='50%' 
+            th width='5%' 
+            th width='5%' 
+
+  tbody
+   - @categories.each do |category|
+          tr
+            td = category.name
+            td = link_to '价目表', prices_category_path(category)
+
+    
+br
+
+= link_to 'New Price', new_price_path
