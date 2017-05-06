@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   
+  resources :waybills
+  resources :orders
   resources :price_rules
   resources :prices
   #resources :products
@@ -42,7 +44,7 @@ Rails.application.routes.draw do
       get :search
     end
   end
-
+  resources :users
   root 'workeraccounts#index'
   #root 'application#hello'
 end
