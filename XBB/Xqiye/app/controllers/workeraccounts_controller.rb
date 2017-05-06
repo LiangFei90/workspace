@@ -49,7 +49,7 @@ class WorkeraccountsController < ApplicationController
   end
 
   def change_current_city
-    session[:current_city]=City.find(params[:id])
+    session[:current_city_id]=params[:id]
     redirect_to :back
   end
 

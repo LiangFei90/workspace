@@ -1,6 +1,6 @@
 class RolesController < ApplicationController
   
-  
+  before_filter :authenticate_workeraccount!
   before_action :set_role, only: [:show, :edit, :update, :destroy]
 
   # GET /roles

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-  
   resources :cities
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :workeraccounts
@@ -9,7 +7,7 @@ Rails.application.routes.draw do
   resources :workeraccounts do 
     member do 
       get 'reset'=>'workeraccounts#reset' ,:as =>'reset_password'
-      #put :change_current_city
+      put :change_current_city
     end
   end
 
@@ -34,5 +32,5 @@ Rails.application.routes.draw do
   end
 
   root 'workeraccounts#index'
-
+  #root 'application#hello'
 end

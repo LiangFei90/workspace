@@ -1,4 +1,5 @@
 class RegionsController < ApplicationController
+  before_filter :authenticate_workeraccount!
   before_action :set_region, only: [:show, :edit, :update, :destroy]
 
   # GET /regions
