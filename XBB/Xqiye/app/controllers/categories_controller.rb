@@ -29,15 +29,13 @@ class CategoriesController < ApplicationController
 
   # POST /categories
   # POST /categories.json
-  def create
-    
+  ddef create
     params = category_params
     if params['logo']
       filename = generate_filename
       Image.upload(params['logo'].tempfile.path, filename)
       params['logo'] = filename
     end
-    
     @category = Category.new(params)
 
     respond_to do |format|
