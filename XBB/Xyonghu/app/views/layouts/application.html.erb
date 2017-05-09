@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Xyonghu</title>
+    <title>XBB</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,11 @@
   </head>
 
   <body>
-    <%= yield %>
+   	<%= render "layouts/menu"%>
+  	<div class="container" id="container" style="width:100%">
+      <%= bootstrap_flash %>
+      <%= yield %>
+    
+    </div>
   </body>
 </html>

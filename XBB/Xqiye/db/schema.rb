@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170506114624) do
+ActiveRecord::Schema.define(version: 20170508103526) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "address"
@@ -122,11 +122,9 @@ ActiveRecord::Schema.define(version: 20170506114624) do
     t.integer  "cleaning_status",            default: 0
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.integer  "waybill_id"
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["category_id"], name: "index_orders_on_category_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
-    t.index ["waybill_id"], name: "index_orders_on_waybill_id", using: :btree
   end
 
   create_table "price_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -199,7 +197,6 @@ ActiveRecord::Schema.define(version: 20170506114624) do
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
-    t.string   "name",                   default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -208,6 +205,8 @@ ActiveRecord::Schema.define(version: 20170506114624) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "name"
+    t.string   "mobile"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree

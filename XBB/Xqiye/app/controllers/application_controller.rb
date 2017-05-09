@@ -1,18 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-
+  before_filter :authenticate_workeraccount!
   #before_action :authenticate_workeraccount!
 
   def hello
   	render html: "Hello world"
   end
 
-  
-
-  before_filter :authenticate_workeraccount!
-
- def current_ability
+  def current_ability
     @current_ability ||= ::Ability.new(current_workeraccount)
   end
 

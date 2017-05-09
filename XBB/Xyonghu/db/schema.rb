@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170506114624) do
+ActiveRecord::Schema.define(version: 20170508081007) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "address"
@@ -111,24 +111,6 @@ ActiveRecord::Schema.define(version: 20170506114624) do
     t.index ["station_id"], name: "index_factories_stations_on_station_id", using: :btree
   end
 
-  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "category_id"
-    t.integer  "user_id"
-    t.integer  "address_id"
-    t.float    "total_price",     limit: 24
-    t.integer  "status",                     default: 0
-    t.integer  "courier_status",             default: 0
-    t.integer  "voucher_status",             default: 0
-    t.integer  "cleaning_status",            default: 0
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.integer  "waybill_id"
-    t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
-    t.index ["category_id"], name: "index_orders_on_category_id", using: :btree
-    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
-    t.index ["waybill_id"], name: "index_orders_on_waybill_id", using: :btree
-  end
-
   create_table "price_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "grade"
     t.integer  "city_id"
@@ -199,7 +181,6 @@ ActiveRecord::Schema.define(version: 20170506114624) do
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
-    t.string   "name",                   default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -208,6 +189,8 @@ ActiveRecord::Schema.define(version: 20170506114624) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "name"
+    t.string   "mobile"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -275,9 +258,6 @@ ActiveRecord::Schema.define(version: 20170506114624) do
 
   add_foreign_key "categories_cities", "categories"
   add_foreign_key "categories_cities", "cities"
-  add_foreign_key "orders", "addresses"
-  add_foreign_key "orders", "categories"
-  add_foreign_key "orders", "users"
   add_foreign_key "price_rules", "categories"
   add_foreign_key "price_rules", "cities"
   add_foreign_key "prices", "products"

@@ -1,19 +1,37 @@
-h1 Listing orders
+.left_menu
+  .menu_son
+    =link_to 'MyAddreses', addresses_path
+  .menu_son
+    =link_to 'MyOrders' ,orders_path
+  .menu_son
+    =link_to 'MyMessages' 
 
-table
-  thead
-    tr
-      th
-      th
-      th
+.container
+  .panel.panel-default
+    .panel-heading
+      | 订单
+    .panel-body
+      table.table.table-striped
+        thead
+          tr
+            th 单号
+            th 状态
+            th 总价
+            th
+            th
+            th
 
-  tbody
-    - @orders.each do |order|
-      tr
-        td = link_to 'Show', order
-        td = link_to 'Edit', edit_order_path(order)
-        td = link_to 'Destroy', order, data: { confirm: 'Are you sure?' }, method: :delete
+        tbody
+          - @orders.each do |order|
+            tr
+              td = order.id
+              td = order.status
+              td = order.total_price
+              td = link_to 'Show', order
+              td = link_to 'Edit', edit_order_path(order)
+              td = link_to 'Destroy', order, data: { confirm: 'Are you sure?' }, method: :delete
+        tfoot
+          =link_to '新建地址',  new_address_path , class: 'btn btn-info btn-sm'
+    
 
-br
-
-= link_to 'New Order', new_order_path
+      = link_to 'New Order', new_order_path

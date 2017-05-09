@@ -3,17 +3,19 @@ h1 Listing orders
 table
   thead
     tr
+      th 单号
+      th 状态
+      th 总价
       th
-      th
-      th
+     
 
   tbody
     - @orders.each do |order|
       tr
+        td = order.id
+        td = order.status
+        td = order.total_price
         td = link_to 'Show', order
-        td = link_to 'Edit', edit_order_path(order)
-        td = link_to 'Destroy', order, data: { confirm: 'Are you sure?' }, method: :delete
-
 br
 
 = link_to 'New Order', new_order_path

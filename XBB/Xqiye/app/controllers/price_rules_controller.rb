@@ -27,8 +27,8 @@ class PriceRulesController < ApplicationController
   # POST /price_rules
   # POST /price_rules.json
   def create
-    @price_rule = PriceRule.new(price_rule_params)
-
+    #@price_rule = PriceRule.new(price_rule_params)
+    @price_rule = PriceRule.new(price_rule_params.merge(city_id: current_city.id))
     respond_to do |format|
       if @price_rule.save
         format.html { redirect_to @price_rule, notice: 'Price rule was successfully created.' }

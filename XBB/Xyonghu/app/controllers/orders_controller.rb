@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_user
 
   # GET /orders
   # GET /orders.json
@@ -24,8 +25,9 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
-
+    @order = @user.orders.create(order_params)
+    #@product = @category.products.create(product_params)
+    #@current_user=current_user.id
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -63,12 +65,19 @@ class OrdersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      if user_signed_in?        
+        @user=current_user 
+      else
+        @user=nil
+      end
+    end
     def set_order
       @order = Order.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.fetch(:order, {})
+      params.require(:order).permit(:category_id,:user_id,:address_id,:total_price,:status,:vocher_status,:cleaning_status)
     end
 end

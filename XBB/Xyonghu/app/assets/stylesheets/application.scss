@@ -10,6 +10,9 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require select2
+ *= require select2-bootstrap
+ *= require bootstrap-editable.css
  *= require_tree .
  *= require_self
  */
@@ -17,3 +20,31 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+
+ .box2{
+ 	float:right;
+ 	margin-top:15px;   
+    margin-right:150px;
+    
+}
+.left_menu{
+	float:left;
+	height:800px;
+	width:19%;
+	border:1px;
+	margin-left:-15px;
+	background:#CADDEB;
+	margin-top:-20px;
+
+}
+
+.menu_son{
+	#height:120px;
+	width:100%;
+	border:1px ;
+	backguround:#F6F8FA;
+	text-align:center;
+	text-color:#FFF;
+	line-height:120px;
+}
