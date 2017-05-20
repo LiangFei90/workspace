@@ -1,0 +1,14 @@
+#home #mycarousel{
+	width: 100%;
+	height: 300px;
+	/*margin: auto;*/
+	margin-top: -20px;
+	overflow-wrap: hidden;
+	overflow: hidden;
+}
+#mycarousel .item img{
+    height: 300px;
+	width: 50%;
+	margin: 0px auto;
+}
+#home a:hover{color:red;}
