@@ -8,8 +8,7 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     #@categories =current_city.categories
-    @categories = Category.paginate(page: params[:page], per_page: 10).order(updated_at: :desc)
-   
+    @categories = Category.paginate(page: params[:page], per_page: 10).order(updated_at: :desc)  
   end
 
   # GET /categories/1
@@ -29,7 +28,7 @@ class CategoriesController < ApplicationController
 
   # POST /categories
   # POST /categories.json
-  ddef create
+  def create
     params = category_params
     if params['logo']
       filename = generate_filename
@@ -105,4 +104,4 @@ class CategoriesController < ApplicationController
     def generate_filename
       "category-#{Time.now.to_i * 1000 + rand(1000)}"
     end
-  end
+end

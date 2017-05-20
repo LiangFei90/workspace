@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508103526) do
+ActiveRecord::Schema.define(version: 20170510114624) do
 
-  create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "address"
     t.decimal  "lat",               precision: 10, scale: 6
     t.decimal  "lng",               precision: 10, scale: 6
@@ -24,15 +24,15 @@ ActiveRecord::Schema.define(version: 20170508103526) do
     t.index ["addressowner_type", "addressowner_id"], name: "index_addresses_on_addressowner_type_and_addressowner_id", using: :btree
   end
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "name",                                    collation: "gbk_chinese_ci"
     t.string   "logo"
     t.boolean  "is_del",     default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
 
-  create_table "categories_cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories_cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "city_id"
     t.integer "category_id"
     t.index ["category_id"], name: "index_categories_cities_on_category_id", using: :btree
@@ -47,42 +47,21 @@ ActiveRecord::Schema.define(version: 20170508103526) do
     t.index ["region_id"], name: "index_cities_on_region_id", using: :btree
   end
 
-  create_table "cities_workeraccounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "cities_workeraccounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "city_id"
     t.integer "workeraccount_id"
     t.index ["city_id"], name: "index_cities_workeraccounts_on_city_id", using: :btree
     t.index ["workeraccount_id"], name: "index_cities_workeraccounts_on_workeraccount_id", using: :btree
   end
 
-  create_table "couriers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "mobile",                 default: ""
-    t.string   "email",                  default: ""
-    t.string   "encrypted_password",     default: "",    null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "locked_at"
-    t.string   "name"
-    t.boolean  "status",                 default: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.index ["mobile"], name: "index_couriers_on_mobile", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_couriers_on_reset_password_token", unique: true, using: :btree
-  end
-
-  create_table "couriers_stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "couriers_stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "courier_id"
     t.integer "station_id"
     t.index ["courier_id"], name: "index_couriers_stations_on_courier_id", using: :btree
     t.index ["station_id"], name: "index_couriers_stations_on_station_id", using: :btree
   end
 
-  create_table "factories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "factories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "factory_ID",             default: "",    null: false
     t.string   "mobile",                 default: ""
     t.string   "email",                  default: ""
@@ -104,14 +83,14 @@ ActiveRecord::Schema.define(version: 20170508103526) do
     t.index ["reset_password_token"], name: "index_factories_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "factories_stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "factories_stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "factory_id"
     t.integer "station_id"
     t.index ["factory_id"], name: "index_factories_stations_on_factory_id", using: :btree
     t.index ["station_id"], name: "index_factories_stations_on_station_id", using: :btree
   end
 
-  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "category_id"
     t.integer  "user_id"
     t.integer  "address_id"
@@ -122,12 +101,14 @@ ActiveRecord::Schema.define(version: 20170508103526) do
     t.integer  "cleaning_status",            default: 0
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.integer  "waybill_id"
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["category_id"], name: "index_orders_on_category_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
+    t.index ["waybill_id"], name: "index_orders_on_waybill_id", using: :btree
   end
 
-  create_table "price_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "price_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "grade"
     t.integer  "city_id"
     t.integer  "category_id"
@@ -138,7 +119,7 @@ ActiveRecord::Schema.define(version: 20170508103526) do
     t.index ["city_id"], name: "index_price_rules_on_city_id", using: :btree
   end
 
-  create_table "prices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "prices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.float    "price1",     limit: 24, default: 0.0
     t.float    "price2",     limit: 24, default: 0.0
     t.float    "price3",     limit: 24, default: 0.0
@@ -151,7 +132,7 @@ ActiveRecord::Schema.define(version: 20170508103526) do
     t.index ["product_id"], name: "index_prices_on_product_id", using: :btree
   end
 
-  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.string   "logo"
     t.boolean  "is_del",      default: false
@@ -182,7 +163,7 @@ ActiveRecord::Schema.define(version: 20170508103526) do
     t.index ["name"], name: "index_roles_on_name", using: :btree
   end
 
-  create_table "stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.string   "address"
     t.string   "comment"
@@ -194,7 +175,7 @@ ActiveRecord::Schema.define(version: 20170508103526) do
     t.index ["region_id"], name: "index_stations_on_region_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -213,7 +194,7 @@ ActiveRecord::Schema.define(version: 20170508103526) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "waybills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "waybills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "status",        default: 0
     t.string   "sender_type"
     t.integer  "sender_id"
@@ -248,8 +229,7 @@ ActiveRecord::Schema.define(version: 20170508103526) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "workeraccounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email"
+  create_table "workeraccounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "username",               default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -262,14 +242,22 @@ ActiveRecord::Schema.define(version: 20170508103526) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "email"
     t.index ["id"], name: "index_workeraccounts_on_id", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_workeraccounts_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "workeraccounts_roles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "workeraccounts_roles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "workeraccount_id"
     t.integer "role_id"
     t.index ["workeraccount_id", "role_id"], name: "index_workeraccounts_roles_on_workeraccount_id_and_role_id", using: :btree
+  end
+
+  create_table "workers_cites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "city_id"
+    t.integer "worker_id"
+    t.index ["city_id"], name: "index_workers_cites_on_city_id", using: :btree
+    t.index ["worker_id"], name: "index_workers_cites_on_worker_id", using: :btree
   end
 
   add_foreign_key "categories_cities", "categories"
