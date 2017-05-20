@@ -27,7 +27,7 @@ module ApplicationHelper
 	end
 
     def qiniu_url(url)
-	    "http://olavg5ba4.bkt.clouddn.com/#{url}"
+	    "http://opf7r39vx.bkt.clouddn.com/#{url}"
 	end 
 end
 	
